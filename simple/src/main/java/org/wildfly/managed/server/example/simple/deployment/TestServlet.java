@@ -16,7 +16,7 @@
  * limitations under the License.
  */
 
-package org.wildfly.managed.server.builder.test.deployment;
+package org.wildfly.managed.server.example.simple.deployment;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
