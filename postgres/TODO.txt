@@ -1,0 +1,50 @@
+General
+=======
+* What about user feature packs. Is that something we will support?
+-- MAYBE for WildFly, but probably not for EAP?
+
+Docker image
+============
+* Needs the tool jar, and the server-image-builder, which is just the pom.xml
+- Run the tool to update the pom.xml
+- Run the maven build to provision the server and create the image
+* How to name the image?
+* Once built where should it be pushed to?
+
+Later
+======
+* Metrics about how it is running - we need to know who is using what
+-- Where is this stored?
+
+Done
+====
+* Use processing instruction in the pom.xml to be replaced with the eap.xml contents
+* Add CLI files in known location in the jar
+* YAML as an alternative to CLI configuration
+* Pick out latest WildFly Galleon Pack from universe
+-- cloud and datasources Galleon packs also use latest version in GAV
+* Schema and typed parser for the server-config.xml
+* Override base image, wildfly feature pack location and cloud/ds feature pack versions via env vars
+-- I don't think we want to make this easy for users?
+-- But it seems useful for staging of new images/devs who need the multiarch image etc.
+* Override wildfly galleon pack location via env var (I don't think we want to make it easy for users to do this)
+- Think it is important for staging/trying old versions etc.
+
+
+Environment variables
+=====================
+# Needed
+--------
+WILDFLY_BUILDER_WAR_LOCATION=/Users/kabir/sourcecontrol/wildfly/managed-server-builder/test-deployment/target/wildfly-managed-server-builder-test-deployment-1.0-SNAPSHOT.war
+WILDFLY_BUILDER_SERVER_IMAGE_BUILDER_LOCATION=/Users/kabir/sourcecontrol/wildfly/managed-server-builder/server-image-builder
+(on a Mac you also need SERVER_RUNTIME_BASE_IMAGE=quay.io/wildfly-snapshots/wildfly-runtime-jdk11-multi-arch:latest)
+
+# Used to override things
+-------------------------
+CLOUD_FEATURE_PACK_VERSION=2.0.0.Alpha2
+DATASOURCES_FEATURE_PACK_VERSION=2.2.2.Final
+SERVER_FEATURE_PACK_LOCATION=org.wildfly:wildfly-galleon-pack:27.0.0.Alpha4
+SERVER_RUNTIME_BASE_IMAGE=quay.io/wildfly-snapshots/wildfly-runtime-jdk11-multi-arch:latest
+
+
+WILDFLY_BUILDER_WAR_LOCATION=/Users/kabir/sourcecontrol/wildfly/managed-server-builder/test-deployment/target/wildfly-managed-server-builder-test-deployment-1.0-SNAPSHOT.war;WILDFLY_BUILDER_SERVER_IMAGE_BUILDER_LOCATION=/Users/kabir/sourcecontrol/wildfly/managed-server-builder/server-image-builder;SERVER_RUNTIME_BASE_IMAGE=quay.io/wildfly-snapshots/wildfly-runtime-jdk11-multi-arch:latest

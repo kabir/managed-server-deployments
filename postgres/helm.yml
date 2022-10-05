@@ -1,0 +1,12 @@
+deploy:
+  env:
+    - name: POSTGRESQL_USER
+      value: "admin"
+    - name: POSTGRESQL_PASSWORD
+      value: "admin"
+    - name: POSTGRESQL_SERVICE_HOST
+      value: "database-server"
+    - name: POSTGRESQL_SERVICE_PORT
+      value: "5432"
+    - name: POSTGRESQL_DATABASE
+      value: "sampledb"
