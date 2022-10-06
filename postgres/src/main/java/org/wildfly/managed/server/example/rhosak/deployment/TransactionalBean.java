@@ -20,35 +20,35 @@
  * 02110-1301 USA, or see the FSF site: http://www.fsf.org.
  */
 
-package org.wildfly.managed.server.example.postgres.deployment;
+package org.wildfly.managed.server.example.rhosak.deployment;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
+import jakarta.enterprise.context.ApplicationScoped;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.PersistenceContext;
+import jakarta.persistence.TypedQuery;
+import jakarta.transaction.Transactional;
 
-/**
- * @author <a href="mailto:kabir.khan@jboss.com">Kabir Khan</a>
- */
-@Entity
-public class ExampleEntity {
-    private Long id;
-    private String value;
+import java.util.List;
+import java.util.stream.Collectors;
 
-    @Id
-    @GeneratedValue
-    public Long getId() {
-        return id;
+
+@ApplicationScoped
+public class TransactionalBean {
+
+    @PersistenceContext(unitName = "example")
+    EntityManager em;
+
+    @Transactional
+    public void storeValue(String value) {
+        ExampleEntity entity = new ExampleEntity();
+        entity.setValue(value);
+        em.persist(entity);
     }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getValue() {
-        return value;
-    }
-
-    public void setValue(String value) {
-        this.value = value;
+    @Transactional
+    public List<String> getAllValues() {
+        TypedQuery<ExampleEntity> query = em.createQuery("SELECT p from ExampleEntity p", ExampleEntity.class);
+        List<String> values = query.getResultList().stream().map(v -> v.getValue()).collect(Collectors.toList());
+        return values;
     }
 }

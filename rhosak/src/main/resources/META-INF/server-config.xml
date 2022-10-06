@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<server-config>
+    <layers>
+        <layer>cloud-server</layer>
+        <layer>microprofile-reactive-messaging-kafka</layer>
+    </layers>
+</server-config>
+

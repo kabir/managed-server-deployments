@@ -13,6 +13,7 @@ helm uninstall <name>
 
 * [simple](simple) - deploys a simple servlet which outputs the values of system properties set by yaml and cli scripts used to configure the management model.
 * [postgres](postgres) - connects to a Postgres database and configures a datasource to connect to it.
+* [rhosak](rhosak) - connects a MicroProfile Reactive Messaging application to a Kafka instance provided by RHOSAK.
 
 
 

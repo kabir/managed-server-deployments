@@ -1,0 +1,9 @@
+deploy:
+  volumeMounts:
+    - name: rhoas
+      mountPath: /etc/config/rhoas
+      readOnly: true
+  volumes:
+    - name: rhoas
+      secret:
+        secretName: rhoas

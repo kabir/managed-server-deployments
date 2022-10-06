@@ -17,7 +17,7 @@
  *
  */
 
-package org.wildfly.managed.server.example.postgres.deployment;
+package org.wildfly.managed.server.example.rhosak.deployment;
 
 import jakarta.inject.Inject;
 import jakarta.ws.rs.Consumes;

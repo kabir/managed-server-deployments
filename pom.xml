@@ -62,5 +62,6 @@
     <modules>
         <module>simple</module>
         <module>postgres</module>
+        <module>rhosak</module>
     </modules>
 </project>
