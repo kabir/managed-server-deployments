@@ -2,8 +2,6 @@
 <server-config>
     <layers>
         <layer>cloud-server</layer>
-        <layer>jaxrs-server</layer>
-        <!--<layer>postgresql-driver</layer>-->
     </layers>
 </server-config>
 
