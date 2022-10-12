@@ -9,13 +9,18 @@ the prefix for all objects created, and as the final name for the created deploy
 
 ```shell
 # Create all the OpenShift resources needed to deploy our app
-helm install simple-example /path/tp/managed-wildfly-chart/managed-wildfly-chart-0.1.0.tgz
+helm install simple-example /path/tp/managed-wildfly-chart/managed-wildfly-chart-0.1.0.tgz --set builder.mode=populated
 # Deploy our war
 oc start-build simple-example-deployment-build  --from-file=target/ROOT.war 
 ```
+
+The `--set builder.mode=populated` argument used above is optional. The difference between running `helm install`
+with and without it is explained [here](https://github.com/kabir/managed-wildfly-chart#create-a-new-application)
+
 Then view the output either by finding the created route in the console, and clicking on the link, or by running:
 
 ```shell
 curl https://$(oc get route simple-example --template='{{ .spec.host }}')
 ```
 In the output you should see the values coming from the system properties set by `META-INF/server-init.cli` and `META-INF/server-init.yml`.
+

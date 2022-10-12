@@ -75,10 +75,14 @@ Then run the following to create the application. `rhosak-example` is the name o
 the prefix for all objects created, and as the final name for the created deployment, route and service.
 ```shell
 # Create all the OpenShift resources needed to deploy our app
-helm install rhosak-example -f helm.yml /path/tp/managed-wildfly-chart/managed-wildfly-chart-0.1.0.tgz
+helm install rhosak-example -f helm.yml /path/tp/managed-wildfly-chart/managed-wildfly-chart-0.1.0.tgz `--set builder.mode=populated`
 # Deploy our war
 oc start-build rhosak-example-deployment-build  --from-file=target/ROOT.war 
 ```
+
+The `--set builder.mode=populated` argument used above is optional. The difference between running `helm install`
+with and without it is explained [here](https://github.com/kabir/managed-wildfly-chart#create-a-new-application)
+
 Once the application is up and running save some values by running
 ```shell
 curl -X POST https://$(oc get route rhosak-example --template='{{ .spec.host }}')/one
