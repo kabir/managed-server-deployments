@@ -27,3 +27,4 @@ target
 *.iml
 
 rhoas*.env
+.DS_Store

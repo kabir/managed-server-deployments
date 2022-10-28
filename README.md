@@ -17,3 +17,22 @@ helm uninstall <name>
 
 
 
+## Pulling the docker images
+
+Each build will typically push the built images to an imagestream. To inspect the contents of the images, you can
+do the following to be able to pull them:
+
+```shell
+export OPENSHIFT_NS=$(oc project -q)
+oc registry login
+# Copy the route in the env variable OPENSHIFT_IMAGE_REGISTRY
+OPENSHIFT_IMAGE_REGISTRY=$(oc registry info)
+docker login -u openshift -p $(oc whoami -t)  $OPENSHIFT_IMAGE_REGISTRY
+```
+Then we can pull our image
+```shell
+docker pull ${OPENSHIFT_IMAGE_REGISTRY}/${OPENSHIFT_NS}/<image-stream-name>:<tag>
+```
+
+
+
