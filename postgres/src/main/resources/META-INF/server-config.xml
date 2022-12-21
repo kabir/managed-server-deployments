@@ -2,7 +2,7 @@
 <server-config>
     <layers>
         <layer>cloud-server</layer>
-        <layer>postgresql-datasource</layer>
+        <!--<layer>postgresql-datasource</layer>-->
     </layers>
 </server-config>
 
